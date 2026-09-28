@@ -25,9 +25,13 @@ int main() {
     //random number generators for left and right
     leftNum = (rand() % 10)+1;
     rightNum = (rand() % 10)+1;
-    //math symbol random assignment
+    //math type random assignment
     mathType = (rand() % 4)+1;
-
+    //mathType assignments to symbol
+    //1 -> +
+    //2 -> -
+    //3 -> *
+    //4 -> /
     //aesthetic header
     cout <<"(*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*]" << endl;
     cout <<"                       {*} Welcome to the tower of the wizard of magical math tutoring! (V1) {*}" << endl;
