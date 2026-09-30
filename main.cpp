@@ -2,10 +2,8 @@
 Program: MathTutorV2
 Programmers: Benjamin Dickinson, Ian Mensah
 Date: 9/28/2026
-Github Repo:
-Description: A wizard/magic themed math tutor that displays the intro featuring
-ASCII art and jokes, it then asks a simple math question which is checked for correctness
-and then it outputs an end of program message.
+Github Repo: https://github.com/bendickinson15/MathTutorV2.0.git
+Description: It is a Math tutor page for young children. It will generate random numbers.
 ******************************************************************************************/
 #include <iostream> //required for cout and cin
 #include <cstdlib>
@@ -56,6 +54,16 @@ int main() {
     }
     return -1;
 
+    //random number generators for left and right
+    leftNum = (rand() % 10)+1;
+    rightNum = (rand() % 10)+1;
+    //math type random assignment
+    mathType = (rand() % 4)+1;
+    //mathType assignments to symbol
+    //1 -> +
+    //2 -> -
+    //3 -> *
+    //4 -> /
     //aesthetic header
     cout <<"(*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*]" << endl;
     cout <<"                       {*} Welcome to the tower of the wizard of magical math tutoring! (V1) {*}" << endl;
