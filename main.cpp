@@ -18,11 +18,43 @@ int main() {
     int leftNum = 0;
     int rightNum = 0;
     int userAnswer = 0;
-    int mathType = 4;
+    int mathType = 0;
     int correctAnswer = 0;
-    int userAnswer = 0;
     int temp = 0;
-    char mathSymbol = "?";
+    char mathSymbol = '?';
+
+    mathType = rand() % 4 + 1;
+    leftNum = rand() % 10 + 1;
+    rightNum = rand() % 10 + 1;
+
+    if (mathType == 1) {
+        mathSymbol = '+';
+        correctAnswer = leftNum + rightNum;
+    } else if (mathType == 2) {
+        mathSymbol = '-';
+        if (leftNum <= rightNum) {
+            temp = leftNum;
+            leftNum = rightNum;
+            rightNum = temp;
+        }
+        correctAnswer = leftNum - rightNum;
+    } else if (mathType == 3) {
+        mathSymbol = '*';
+        correctAnswer = leftNum*rightNum;
+    } else if (mathType == 4) {
+        mathSymbol = '/';
+        correctAnswer = leftNum;
+        leftNum = rightNum * leftNum;
+
+    }
+    switch (mathType) {
+        case 1:
+        default:
+            cout<<"Error! Invalid Math Type:"<< mathType << endl;
+            cout << "Program ended with an error -1" << endl;
+            cout << "Please report this error to Debbie Johnson." << endl;
+    }
+    return -1;
 
     //aesthetic header
     cout <<"(*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*]" << endl;
@@ -53,10 +85,11 @@ int main() {
 
     //math question and answer
     cout <<"Ah... "<< userName << "! So you have finally found me. If you truly seek the knowledge hidden within these ancient halls, you must" << endl <<"first prove your mind is sharp." << endl;
-    cout <<"What is " << leftNum << " + " << rightNum << " = ";
+    cout <<"What is " << leftNum << mathSymbol << rightNum << " = ";
     cin >> userAnswer;
 
-    if (userAnswer == 13) {
+    if (userAnswer == correctAnswer) {
+
         cout << "Good job! You Got The Question Right!" << endl << endl;
         // Got the answer correct and will move on.
 
