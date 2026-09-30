@@ -18,7 +18,7 @@ int main() {
     int leftNum = 0;
     int rightNum = 0;
     int userAnswer = 0;
-    int mathType = 0;
+    int mathType = 4;
     int correctAnswer = 0;
     int userAnswer = 0;
     int temp = 0;
