@@ -1,12 +1,16 @@
 /*****************************************************************************************
 Program: MathTutorV2
 Programmers: Benjamin Dickinson, Ian Mensah
+Section 2 - 10:00 AM
 Date: 9/28/2026
 Github Repo: https://github.com/bendickinson15/MathTutorV2.0.git
 Description: It is a Math tutor page for young children. It will generate random numbers.
 ******************************************************************************************/
 #include <iostream> //required for cout and cin
-#include <cstdlib>
+#include <cstdlib> //required for random number generators
+#include <string> //required for get line function
+#include <ctime> //required for seeding random number generators
+
 using namespace std; //sets standard namespace
 
 //start of the main function
@@ -18,52 +22,12 @@ int main() {
     int userAnswer = 0;
     int mathType = 0;
     int correctAnswer = 0;
-    int temp = 0;
+    int tempNum = 0;
     char mathSymbol = '?';
 
-    mathType = rand() % 4 + 1;
-    leftNum = rand() % 10 + 1;
-    rightNum = rand() % 10 + 1;
+    //seeding the random number generators later on
+    srand(time(0));
 
-    if (mathType == 1) {
-        mathSymbol = '+';
-        correctAnswer = leftNum + rightNum;
-    } else if (mathType == 2) {
-        mathSymbol = '-';
-        if (leftNum <= rightNum) {
-            temp = leftNum;
-            leftNum = rightNum;
-            rightNum = temp;
-        }
-        correctAnswer = leftNum - rightNum;
-    } else if (mathType == 3) {
-        mathSymbol = '*';
-        correctAnswer = leftNum*rightNum;
-    } else if (mathType == 4) {
-        mathSymbol = '/';
-        correctAnswer = leftNum;
-        leftNum = rightNum * leftNum;
-
-    }
-    switch (mathType) {
-        case 1:
-        default:
-            cout<<"Error! Invalid Math Type:"<< mathType << endl;
-            cout << "Program ended with an error -1" << endl;
-            cout << "Please report this error to Debbie Johnson." << endl;
-    }
-    return -1;
-
-    //random number generators for left and right
-    leftNum = (rand() % 10)+1;
-    rightNum = (rand() % 10)+1;
-    //math type random assignment
-    mathType = (rand() % 4)+1;
-    //mathType assignments to symbol
-    //1 -> +
-    //2 -> -
-    //3 -> *
-    //4 -> /
     //aesthetic header
     cout <<"(*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*]" << endl;
     cout <<"                       {*} Welcome to the tower of the wizard of magical math tutoring! (V1) {*}" << endl;
@@ -87,26 +51,67 @@ int main() {
         (*) What do you call a snake that is 3.14 feet long? A Pi-thon!)"<< endl << endl;
     cout <<"(*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*](*)[*]{*}[*]" << endl;
 
-    //obtaining user's name
+    //setting numbers to random values
+    mathType = rand() % 4 + 1;
+    leftNum = rand() % 10 + 1;
+    rightNum = rand() % 10 + 1;
+
+    //switch for symbol cases
+    switch (mathType) {
+        //addition case
+        case 1:
+            mathSymbol = '+';
+            correctAnswer = leftNum + rightNum;
+            break;
+        //subtraction case
+        case 2:
+            mathSymbol = '-';
+            //if statement to avoid negative result
+            if (leftNum < rightNum) {
+                tempNum = rightNum;
+                rightNum = leftNum;
+                leftNum = tempNum;
+            }
+            correctAnswer = leftNum - rightNum;
+            break;
+        //multiplication case
+        case 3:
+            mathSymbol = '*';
+            correctAnswer = leftNum*rightNum;
+            break;
+        //division case
+        case 4:
+            mathSymbol = '/';
+            //avoids fractions by multiplying by rightNum every time
+            correctAnswer = leftNum;
+            leftNum = rightNum * leftNum;
+            break;
+        //error statements if mathType isn't a number between 1 and 4
+        default:
+            cout<<"Error! Invalid Math Type:"<< mathType << endl;
+            cout << "Program ended with an error -1" << endl;
+            cout << "Please report this error to Debbie Johnson." << endl;
+    }
+
+    //obtaining user's full name
     cout <<"What is your name young apprentice?"<< endl;
-    cin >>userName;
+    getline(cin, userName);
 
     //math question and answer
     cout <<"Ah... "<< userName << "! So you have finally found me. If you truly seek the knowledge hidden within these ancient halls, you must" << endl <<"first prove your mind is sharp." << endl;
     cout <<"What is " << leftNum << mathSymbol << rightNum << " = ";
     cin >> userAnswer;
 
+    //if statement to check userAnswer for correctness
     if (userAnswer == correctAnswer) {
-
+        //correct
         cout << "Good job! You Got The Question Right!" << endl << endl;
-        // Got the answer correct and will move on.
-
-    }
-    else {
+    } else {
+        //incorrect
         cout << "I'm So Disappointed In You Apprentice" << endl << endl;
-        // They got it wrong so now they know
     }
+
     cout <<"This is all for our program! I hope you had a fantastic time!" << endl;
-    cout << "The Wizard math V2 Be Out Shortly!" << endl;
+    cout << "The Wizard math V3 Be Out Shortly!" << endl;
     return 0;
 }
