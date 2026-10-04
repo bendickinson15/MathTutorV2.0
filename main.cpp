@@ -4,7 +4,12 @@ Programmers: Benjamin Dickinson, Ian Mensah
 Section 2 - 10:00 AM
 Date: 9/28/2026
 Github Repo: https://github.com/bendickinson15/MathTutorV2.0.git
-Description: It is a Math tutor page for young children. It will generate random numbers.
+Description: It's a wizard themed math tutor program that displays a greeting, ASCII art,
+and some wizard/magic themed jokes. It generates random numbers and operators to be used
+in one equation that the user can solve. The user's answer is checked for correctness
+and a result is given based on that. The program has a switch that results in an error
+statement for if an operator is chosen that is outside of +, -, *, or /. It also accounts
+for things like negative numbers and fractions in the answer and prevents those.
 ******************************************************************************************/
 #include <iostream> //required for cout and cin
 #include <cstdlib> //required for random number generators
@@ -91,6 +96,7 @@ int main() {
             cout<<"Error! Invalid Math Type:"<< mathType << endl;
             cout << "Program ended with an error -1" << endl;
             cout << "Please report this error to Debbie Johnson." << endl;
+        return -1;
     }
 
     //obtaining user's full name
@@ -98,7 +104,7 @@ int main() {
     getline(cin, userName);
 
     //math question and answer
-    cout <<"Ah... "<< userName << "! So you have finally found me. If you truly seek the knowledge hidden within these ancient halls, you must" << endl <<"first prove your mind is sharp." << endl;
+    cout <<"Ah... "<< userName << "! So you have finally found me. If you truly seek the knowledge hidden within these" << endl << "ancient halls, you must first prove your mind is sharp." << endl;
     cout <<"What is " << leftNum << mathSymbol << rightNum << " = ";
     cin >> userAnswer;
 
@@ -111,6 +117,7 @@ int main() {
         cout << "I'm So Disappointed In You Apprentice" << endl << endl;
     }
 
+    //end program message
     cout <<"This is all for our program! I hope you had a fantastic time!" << endl;
     cout << "The Wizard math V3 Be Out Shortly!" << endl;
     return 0;
